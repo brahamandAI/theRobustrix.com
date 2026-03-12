@@ -5,7 +5,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
-    open: true
-  }
+    open: true,
+  },
+  preview: {
+    port: 5000,
+    allowedHosts: ['therobustrix.com'],
+  },
 });
 
