@@ -157,11 +157,15 @@ export default function MainProducts() {
         }
         .mp-grid {
           display: grid;
-          grid-template-columns: repeat(1, 1fr);
+          /* Default: 2 products per row on mobile */
+          grid-template-columns: repeat(2, 1fr);
           gap: 18px;
           margin-top: 20px;
           align-items: stretch;
-          grid-auto-rows: 1fr;
+          grid-auto-rows: auto;
+        }
+        @media (max-width: 360px) {
+          .mp-grid { grid-template-columns: 1fr; }
         }
         @media (min-width: 1024px) {
           .mp-grid { grid-template-columns: repeat(3, 1fr); }
@@ -171,7 +175,7 @@ export default function MainProducts() {
           display: grid;
           gap: 10px;
           padding: 16px;
-          height: 100%;
+          height: auto;
           grid-template-rows: auto auto 1fr auto;
         }
         .mp-overline {
@@ -193,17 +197,27 @@ export default function MainProducts() {
         }
         .mp-head { display: grid; gap: 4px; }
         .mp-title { font-weight: 900; font-size: 1.05rem; }
-        .mp-meta { color: var(--color-ink-700); }
-        .mp-tags { color: var(--color-brand-primary); font-weight: 700; }
+        .mp-meta { color: var(--color-ink-700); word-break: break-word; }
+        .mp-tags { color: var(--color-brand-primary); font-weight: 700; word-break: break-word; }
         .mp-highlights {
           display: grid;
           gap: 6px;
-          list-style: disc inside;
+          list-style: disc;
           color: var(--color-ink-900);
-          overflow: auto;
-          padding-right: 4px;
+          overflow-y: auto;
+          overflow-x: hidden;
+          padding: 0 4px 0 18px;
+          margin: 0;
+          max-height: 210px; /* keep cards from becoming massive on mobile */
         }
         .mp-actions { margin-top: 6px; }
+
+        @media (max-width: 719px) {
+          .mp-card { padding: 14px; }
+          .mp-media { height: 180px; }
+          .mp-highlights { max-height: 220px; }
+          .mp-actions .btn { width: 100%; justify-content: center; }
+        }
       `}</style>
     </section>
   );

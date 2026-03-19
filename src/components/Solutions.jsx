@@ -50,10 +50,16 @@ export default function Solutions() {
       <style>{`
         .solutions {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 10px 24px;
+          /* Mobile: 2 tiles per row */
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px 16px;
           margin-top: 10px;
           align-items: start;
+          width: 100%;
+          overflow-x: hidden; /* keep grid from creating horizontal overflow */
+        }
+        @media (min-width: 720px) {
+          .solutions { grid-template-columns: repeat(3, 1fr); }
         }
         @media (min-width: 1024px) {
           .solutions { grid-template-columns: repeat(7, 1fr); }

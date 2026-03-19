@@ -103,71 +103,73 @@ export default function Hero() {
 
   return (
     <section className="hero" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-      <div
-        className="slider"
-        style={{ transform: `translateX(-${index * 100}%)` }}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-        role="region"
-        aria-label="Featured"
-      >
-        {SLIDES.map((s, i) => (
-          <article className={`slide ${s.variant === 'full' ? 'full-bleed' : ''}`} key={s.id} data-slide-id={s.id} aria-hidden={i !== index}>
-            {s.variant === 'full' ? (
-              <>
-                <div className="bg-full" style={{ backgroundImage: `url(${s.image})`, backgroundPosition: s.bgPosition || 'center 70%' }} />
-                <div className="overlay-full" />
-                <div className="container slide-inner full-inner">
+      <div className="slider-viewport">
+        <div
+          className="slider"
+          style={{ transform: `translateX(-${index * 100}%)` }}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+          role="region"
+          aria-label="Featured"
+        >
+          {SLIDES.map((s, i) => (
+            <article className={`slide ${s.variant === 'full' ? 'full-bleed' : ''}`} key={s.id} data-slide-id={s.id} aria-hidden={i !== index}>
+              {s.variant === 'full' ? (
+                <>
+                  <div className="bg-full" style={{ backgroundImage: `url(${s.image})`, backgroundPosition: s.bgPosition || 'center 70%' }} />
+                  <div className="overlay-full" />
+                  <div className="container slide-inner full-inner">
+                    <div className="copy">
+                      <h2 className="h2">{s.title}</h2>
+                      <p className="subtle">{s.subtitle}</p>
+                      <div className="cta-row">
+                        {s.ctaPrimary && (
+                          <Link to="/products" className="btn btn-primary">{s.ctaPrimary}</Link>
+                        )}
+                        {s.ctaSecondary && (
+                          s.ctaSecondary.includes('Contact') ? (
+                            <a href="https://wa.me/919090020245" target="_blank" rel="noopener noreferrer" className="btn btn-outline">{s.ctaSecondary}</a>
+                          ) : (
+                            <Link to="/products" className="btn btn-outline">{s.ctaSecondary}</Link>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className="container slide-inner">
                   <div className="copy">
                     <h2 className="h2">{s.title}</h2>
                     <p className="subtle">{s.subtitle}</p>
                     <div className="cta-row">
-                      {s.ctaPrimary && (
-                        <Link to="/products" className="btn btn-primary">{s.ctaPrimary}</Link>
-                      )}
-                      {s.ctaSecondary && (
-                        s.ctaSecondary.includes('Contact') ? (
-                          <a href="https://wa.me/919090020245" target="_blank" rel="noopener noreferrer" className="btn btn-outline">{s.ctaSecondary}</a>
-                        ) : (
-                          <Link to="/products" className="btn btn-outline">{s.ctaSecondary}</Link>
-                        )
+                      <Link to="/products" className="btn btn-primary">{s.ctaPrimary}</Link>
+                      {s.ctaSecondary.includes('Contact') ? (
+                        <a href="https://wa.me/919090020245" target="_blank" rel="noopener noreferrer" className="btn btn-outline">{s.ctaSecondary}</a>
+                      ) : (
+                        <Link to="/products" className="btn btn-outline">{s.ctaSecondary}</Link>
                       )}
                     </div>
                   </div>
-                </div>
-              </>
-            ) : (
-              <div className="container slide-inner">
-                <div className="copy">
-                  <h2 className="h2">{s.title}</h2>
-                  <p className="subtle">{s.subtitle}</p>
-                  <div className="cta-row">
-                    <Link to="/products" className="btn btn-primary">{s.ctaPrimary}</Link>
-                    {s.ctaSecondary.includes('Contact') ? (
-                      <a href="https://wa.me/919090020245" target="_blank" rel="noopener noreferrer" className="btn btn-outline">{s.ctaSecondary}</a>
-                    ) : (
-                      <Link to="/products" className="btn btn-outline">{s.ctaSecondary}</Link>
-                    )}
+                  <div className="visual">
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      loading={i === index ? 'eager' : 'lazy'}
+                      decoding="async"
+                      referrerPolicy="no-referrer"
+                      onError={(ev) => onImageError(ev, i)}
+                    />
                   </div>
                 </div>
-                <div className="visual">
-                  <img
-                    src={s.image}
-                    alt={s.title}
-                    loading={i === index ? 'eager' : 'lazy'}
-                    decoding="async"
-                    referrerPolicy="no-referrer"
-                    onError={(ev) => onImageError(ev, i)}
-                  />
-                </div>
-              </div>
-            )}
-          </article>
-        ))}
+              )}
+            </article>
+          ))}
+        </div>
       </div>
 
-      <div className="container controls">
+      <div className="controls">
         <div className="dots" role="tablist" aria-label="Slides">
           {SLIDES.map((s, i) => (
             <button
@@ -196,6 +198,10 @@ export default function Hero() {
           background:
             radial-gradient(1200px 480px at 80% 100%, rgba(228, 30, 43, 0.08), transparent 60%),
             linear-gradient(180deg, #f7f9ff 0%, #ffffff 100%);
+        }
+        .slider-viewport {
+          overflow: hidden; /* Prevent horizontal scroll from wide carousel track */
+          width: 100%;
         }
         .slider {
           display: grid;
@@ -298,6 +304,8 @@ export default function Hero() {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          width: 100%;
+          padding-inline: var(--container-pad);
         }
         .dots {
           display: flex;
@@ -331,8 +339,24 @@ export default function Hero() {
 
         @media (max-width: 1023px) {
           .slide-inner { grid-template-columns: 1fr; }
-          .controls { position: static; padding-block: 16px; }
+          /* Keep controls overlayed on the hero (prevents layout shift + gutter) */
+          .controls { position: absolute; bottom: 16px; padding-block: 0; }
           .arrows { margin-left: auto; }
+        }
+
+        @media (max-width: 719px) {
+          /* Reduce vertical heaviness on small phones */
+          .slide { min-height: clamp(320px, 64vw, 470px); }
+          .slide.full-bleed { min-height: clamp(380px, 72vw, 600px); }
+
+          /* Ensure overlay controls have breathing room */
+          .full-inner { padding-bottom: clamp(56px, 10vh, 120px); }
+
+          .dot { width: 9px; height: 9px; }
+          .arrow { width: 36px; height: 36px; }
+
+          /* Lift controls to avoid clipping and respect iOS safe area */
+          .controls { bottom: calc(18px + env(safe-area-inset-bottom)); }
         }
       `}</style>
     </section>
