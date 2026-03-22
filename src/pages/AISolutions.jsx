@@ -49,8 +49,8 @@ function getRandomImage(index) {
 }
 
 export default function AISolutions() {
-  const heroRef = useInView({ threshold: 0.1 });
-  const gridRef = useInView({ threshold: 0.1 });
+  const heroRef = useInView();
+  const gridRef = useInView();
   
   const items = useMemo(() => {
     // Shuffle available images for randomness
@@ -96,7 +96,6 @@ export default function AISolutions() {
                 <p className="ai-card-model">{it.modelView}</p>
               </div>
               <div className="ai-card-actions">
-                <a href="#" className="btn btn-primary">Details</a>
                 <a href="https://drive.google.com/file/d/1V2lWp_aqRs0okhO3mNIL0uzBgqL3GxUZ/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="btn btn-outline">Datasheet</a>
               </div>
             </article>
@@ -106,7 +105,7 @@ export default function AISolutions() {
 
       <style>{`
         .ai-hero {
-          background: linear-gradient(180deg, #f4f7ff 0%, #ffffff 100%);
+          background: var(--color-bg);
           border-bottom: 1px solid var(--color-ink-100);
           padding-block: clamp(28px, 6vw, 48px);
         }
@@ -114,10 +113,11 @@ export default function AISolutions() {
           font-size: clamp(28px, 5vw, 42px);
           font-weight: 900;
           line-height: 1.1;
+          color: var(--color-ink-900);
         }
         .ai-sub {
           margin-top: 10px;
-          color: var(--color-ink-600, #3d4656);
+          color: var(--color-ink-700);
           max-width: 900px;
         }
         .ai-grid {
@@ -138,18 +138,20 @@ export default function AISolutions() {
         }
         .ai-thumb {
           width: 100%;
-          height: 160px;
-          display: grid;
-          place-items: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           background: #fff;
           border-radius: 10px;
           box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 8px 20px rgba(18,28,45,0.06);
-          overflow: hidden;
+          padding: 10px;
+          box-sizing: border-box;
         }
         .ai-thumb img {
           width: 100%;
-          height: 100%;
-          object-fit: cover;
+          height: auto;
+          display: block;
+          object-fit: contain;
         }
         .ai-card-title {
           font-size: 1.02rem;

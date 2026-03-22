@@ -3,9 +3,8 @@ import { MAIN_PRODUCTS as products } from '../data/mainProducts.js';
 import useInView from '../hooks/useInView.js';
 
 export default function MainProducts() {
-  const headerRef = useInView({ threshold: 0.1 });
-  const gridRef = useInView({ threshold: 0.1 });
-  const heroRef = useInView({ threshold: 0.1 });
+  const headerRef = useInView();
+  const gridRef = useInView();
   const fallback = [
     {
       id: 'p1',
@@ -116,45 +115,7 @@ export default function MainProducts() {
         ))}
       </div>
 
-      <div ref={heroRef} className="mp-hero fade-in-up">
-        <img src="/pictures/pc.jpeg" alt="Robustrix industrial PC showcase" loading="lazy" decoding="async" />
-        <div className="mp-hero-overlay" />
-        <div className="mp-hero-copy">
-          <p className="overline">Our Main Products</p>
-          <h2 className="h2">Engineered for rugged, AI-ready deployments</h2>
-        </div>
-      </div>
-
       <style>{`
-        .mp-hero {
-          position: relative;
-          border-radius: 14px;
-          overflow: hidden;
-          min-height: 150px;
-          background: var(--color-bg-alt);
-          margin-top: 20px;
-        }
-        .mp-hero img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-        .mp-hero-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(120deg, rgba(0,0,0,0.55), rgba(0,0,0,0.25));
-        }
-        .mp-hero-copy {
-          position: absolute;
-          inset: 0;
-          display: grid;
-          align-content: center;
-          padding: 24px;
-          gap: 8px;
-          color: #ffffff;
-          text-shadow: 0 2px 10px rgba(0,0,0,0.45);
-        }
         .mp-grid {
           display: grid;
           /* Default: 2 products per row on mobile */

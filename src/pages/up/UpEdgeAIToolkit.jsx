@@ -62,12 +62,12 @@ export default function UpEdgeAIToolkit() {
         .about-grid { display: grid; gap: 16px; grid-template-columns: repeat(1,1fr); }
         @media (min-width:1024px){ .about-grid { grid-template-columns: repeat(2,1fr); } }
         .about-card { background: #fff; border-radius: 12px; box-shadow: var(--shadow-sm); padding: 14px; display: grid; gap: 8px; }
-        .about-card img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; }
+        .about-card img { width: 100%; height: auto; display: block; object-fit: contain; border-radius: 8px; }
         .ai-grid { display: grid; gap: 16px; grid-template-columns: repeat(3,1fr); }
         @media (max-width:1023px){ .ai-grid { grid-template-columns: repeat(2,1fr); } }
         @media (max-width:719px){ .ai-grid { grid-template-columns: 1fr; } }
-        .ai-thumb { width: 100%; height: 160px; display: grid; place-items: center; background: #fff; border-radius: 10px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 8px 20px rgba(18,28,45,.06); overflow: hidden; }
-        .ai-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .ai-thumb { width: 100%; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 10px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 8px 20px rgba(18,28,45,.06); padding: 10px; box-sizing: border-box; }
+        .ai-thumb img { width: 100%; height: auto; display: block; object-fit: contain; }
         .ai-card-title { font-weight: 800; }
         .ai-card-sub { color: var(--color-ink-600,#3d4656); }
       `}</style>

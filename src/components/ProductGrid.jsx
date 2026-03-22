@@ -12,7 +12,7 @@ const PRODUCTS = [
 ];
 
 export default function ProductGrid() {
-  const ref = useInView({ threshold: 0.2 });
+  const ref = useInView();
   function onImgError(e, id) {
     const item = PRODUCTS.find(x => x.id === id);
     if (item?.fallback) e.currentTarget.src = item.fallback;

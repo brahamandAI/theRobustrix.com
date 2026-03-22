@@ -12,8 +12,8 @@ const tiles = [
 ];
 
 export default function NetworkSolutions() {
-  const heroRef = useInView({ threshold: 0.1 });
-  const gridRef = useInView({ threshold: 0.1 });
+  const heroRef = useInView();
+  const gridRef = useInView();
   
   function onImgError(e) {
     e.currentTarget.src = '/products/networksolutions.png';

@@ -56,8 +56,8 @@ export default function IotGateways() {
         .ai-grid { display: grid; gap: 16px; grid-template-columns: repeat(3,1fr); }
         @media (max-width:1023px){ .ai-grid { grid-template-columns: repeat(2,1fr); } }
         @media (max-width:719px){ .ai-grid { grid-template-columns: 1fr; } }
-        .ai-thumb { width: 100%; height: 160px; display: grid; place-items: center; background: #fff; border-radius: 10px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 8px 20px rgba(18,28,45,.06); overflow: hidden; }
-        .ai-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .ai-thumb { width: 100%; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 10px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 8px 20px rgba(18,28,45,.06); padding: 10px; box-sizing: border-box; }
+        .ai-thumb img { width: 100%; height: auto; display: block; object-fit: contain; }
         .ai-card-title { font-weight: 800; }
         .ai-card-model { color: var(--color-brand-primary); font-weight: 900; letter-spacing: .02em; }
       `}</style>

@@ -51,7 +51,6 @@ export default function NetworkDesktop() {
                 <p className="ai-card-model">{it.modelView}</p>
               </div>
               <div className="ai-card-actions">
-                <a href="#" className="btn btn-primary">Details</a>
                 <a href="https://drive.google.com/file/d/1V2lWp_aqRs0okhO3mNIL0uzBgqL3GxUZ/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="btn btn-outline">Datasheet</a>
               </div>
             </article>
@@ -74,15 +73,16 @@ export default function NetworkDesktop() {
         }
         .ai-thumb {
           width: 100%;
-          height: 150px;
-          display: grid;
-          place-items: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           background: #fff;
           border-radius: 10px;
           box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 8px 20px rgba(18,28,45,0.06);
-          overflow: hidden;
+          padding: 10px;
+          box-sizing: border-box;
         }
-        .ai-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .ai-thumb img { width: 100%; height: auto; display: block; object-fit: contain; }
         .ai-card-title { font-weight: 800; }
         .ai-card-sub { color: var(--color-ink-600, #3d4656); }
         .ai-card-model { color: var(--color-brand-primary); font-weight: 900; letter-spacing: .02em; }

@@ -1,7 +1,7 @@
 import useInView from '../hooks/useInView.js';
 
 export default function SectionHeading({ overline, title, subtitle }) {
-  const ref = useInView({ threshold: 0.1 });
+  const ref = useInView();
   return (
     <header ref={ref} className="fade-in-up">
       {overline && <p className="overline">{overline}</p>}

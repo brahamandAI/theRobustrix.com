@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useContact } from '../context/ContactContext.jsx';
+import { APPLICATION_AREAS } from '../data/applicationAreas.js';
 import Hero from '../components/Hero.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
 import Solutions from '../components/Solutions.jsx';
@@ -12,13 +14,14 @@ export default function Home() {
   const { openModal } = useContact();
   
   // Animation refs
-  const aboutTopRef = useInView({ threshold: 0.1 });
-  const whoRef = useInView({ threshold: 0.1 });
-  const appsRef = useInView({ threshold: 0.1 });
-  const appGridRef = useInView({ threshold: 0.1 });
-  const bharatRef = useInView({ threshold: 0.1 });
-  const comingSoonRef = useInView({ threshold: 0.1 });
-  const contactRef = useInView({ threshold: 0.1 });
+  const aboutTopRef = useInView();
+  const whoRef = useInView();
+  const appsRef = useInView();
+  const appGridRef = useInView();
+  const bharatRef = useInView();
+  const comingSoonRef = useInView();
+  const contactRef = useInView();
+  const specsShowcaseRef = useInView();
 
   useEffect(() => {
     const timer = requestAnimationFrame(() => {
@@ -132,6 +135,244 @@ export default function Home() {
 
         <MainProducts />
 
+        <section className="container section-spacing home-specs-wrap">
+          <div ref={specsShowcaseRef} className="home-specs-showcase fade-in-up">
+            <header className="home-specs-header">
+              <p className="overline">Technical specs</p>
+              <h2 className="h2">Engineering in focus</h2>
+              <p className="subtle home-specs-lead">
+                Documentation and drawings the way we build—precise, industrial, and ready for integration teams.
+              </p>
+            </header>
+            <div className="home-specs-grid" aria-label="Product showcases and specification sheets">
+              <div className="home-specs-hero">
+                <img
+                  src="/pictures/pc.jpeg"
+                  alt="Robustrix industrial PC showcase"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="home-specs-hero-overlay" aria-hidden="true" />
+                <div className="home-specs-hero-copy">
+                  <p className="overline">Our Main Products</p>
+                  <h2 className="h2">Engineered for rugged, AI-ready deployments</h2>
+                </div>
+              </div>
+              <figure className="home-specs-panel">
+                <img
+                  src="/specs/1.jpeg"
+                  alt="Robustrix product specification overview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <figure className="home-specs-panel">
+                <img
+                  src="/specs/2.jpeg"
+                  alt="Robustrix product specification detail"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <figure className="home-specs-panel">
+                <img
+                  src="/specs/3.jpeg"
+                  alt="Robustrix product specification diagram"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          </div>
+          <style>{`
+            .home-specs-wrap {
+              position: relative;
+              overflow-x: clip;
+            }
+            .home-specs-wrap::before {
+              content: '';
+              pointer-events: none;
+              position: absolute;
+              inset: -32px -6vw 0;
+              background:
+                radial-gradient(ellipse 85% 55% at 15% 20%, rgba(2, 196, 249, 0.16), transparent 52%),
+                radial-gradient(ellipse 55% 45% at 92% 75%, rgba(138, 63, 252, 0.12), transparent 48%);
+              z-index: 0;
+            }
+            .home-specs-showcase {
+              position: relative;
+              z-index: 1;
+              display: grid;
+              gap: clamp(22px, 4vw, 38px);
+              width: 100%;
+            }
+            .home-specs-header {
+              max-width: 54ch;
+              width: 100%;
+            }
+            .home-specs-header .h2 {
+              line-height: 1.15;
+            }
+            .home-specs-lead {
+              margin-top: 10px;
+              font-size: clamp(15px, 1.85vw, 18px);
+              line-height: 1.55;
+            }
+            .home-specs-hero {
+              position: relative;
+              display: grid;
+              grid-template: 1fr / 1fr;
+              aspect-ratio: 4 / 3;
+              min-height: clamp(200px, 38vw, 320px);
+              border-radius: clamp(14px, 2vw, 22px);
+              overflow: hidden;
+              border: 1px solid rgba(2, 196, 249, 0.32);
+              background: var(--home-section-dark, #031f27);
+            }
+            .home-specs-hero:hover {
+              border-color: rgba(21, 227, 255, 0.85);
+            }
+            .home-specs-hero > img {
+              grid-area: 1 / 1;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center;
+              display: block;
+            }
+            .home-specs-hero-overlay {
+              grid-area: 1 / 1;
+              z-index: 1;
+              background: linear-gradient(120deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.25));
+              pointer-events: none;
+            }
+            .home-specs-hero-copy {
+              grid-area: 1 / 1;
+              z-index: 2;
+              display: grid;
+              align-content: center;
+              padding: clamp(18px, 4vw, 28px);
+              gap: 8px;
+              color: #fff;
+              text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+              pointer-events: none;
+            }
+            .home-specs-grid {
+              display: grid;
+              gap: clamp(14px, 2.4vw, 22px);
+              grid-template-columns: 1fr;
+              width: 100%;
+            }
+            .home-specs-grid > * {
+              min-width: 0;
+            }
+            @media (min-width: 768px) {
+              .home-specs-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                align-items: stretch;
+              }
+            }
+            .home-specs-panel {
+              position: relative;
+              display: grid;
+              grid-template: 1fr / 1fr;
+              aspect-ratio: 4 / 3;
+              min-height: clamp(200px, 38vw, 320px);
+              margin: 0;
+              padding: 0;
+              border-radius: clamp(14px, 2vw, 22px);
+              background: var(--home-section-dark, #031f27);
+              border: 1px solid rgba(2, 196, 249, 0.32);
+              box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+                0 22px 50px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(2, 196, 249, 0.07);
+              overflow: hidden;
+            }
+            .home-specs-panel:hover {
+              border-color: rgba(21, 227, 255, 0.85);
+            }
+            .home-specs-panel > img {
+              grid-area: 1 / 1;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center;
+              display: block;
+            }
+
+            @media (max-width: 767px) {
+              section.home-specs-wrap.container {
+                padding-left: max(var(--container-pad), env(safe-area-inset-left, 0px));
+                padding-right: max(var(--container-pad), env(safe-area-inset-right, 0px));
+              }
+              section.home-specs-wrap.section-spacing {
+                padding-block: clamp(32px, 7vw, 64px);
+              }
+              .home-specs-wrap::before {
+                inset: -16px 0 0;
+              }
+              .home-specs-showcase {
+                gap: clamp(14px, 4vw, 22px);
+              }
+              .home-specs-header .h2 {
+                font-size: clamp(1.35rem, 6.2vw, 1.85rem);
+              }
+              .home-specs-lead {
+                font-size: clamp(14px, 3.8vw, 16px);
+                line-height: 1.5;
+              }
+              .home-specs-hero {
+                min-height: clamp(168px, 52vw, 260px);
+                border-radius: 12px;
+              }
+              .home-specs-hero > img {
+                object-position: center;
+              }
+              .home-specs-hero-copy {
+                padding: 14px 14px 16px;
+                align-content: end;
+                justify-items: start;
+              }
+              .home-specs-hero-copy .overline {
+                font-size: 0.68rem;
+                letter-spacing: 0.1em;
+              }
+              .home-specs-hero-copy .h2 {
+                font-size: clamp(1rem, 4.8vw, 1.28rem);
+                line-height: 1.22;
+                max-width: 20ch;
+              }
+              .home-specs-grid {
+                gap: 12px;
+              }
+              .home-specs-panel {
+                border-radius: 12px;
+                min-height: clamp(160px, 52vw, 260px);
+                box-shadow:
+                  0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+                  0 12px 28px rgba(0, 0, 0, 0.35),
+                  0 0 28px rgba(2, 196, 249, 0.06);
+              }
+            }
+
+            @media (max-width: 380px) {
+              .home-specs-grid {
+                gap: 10px;
+              }
+              .home-specs-hero {
+                min-height: min(200px, 58vw);
+              }
+              .home-specs-panel {
+                min-height: min(200px, 58vw);
+              }
+              .home-specs-hero-copy .h2 {
+                max-width: none;
+              }
+            }
+          `}</style>
+        </section>
+
         <section className="container section-spacing">
           <div ref={aboutTopRef} className="about-top fade-in-up">
             <div className="about-copy">
@@ -174,49 +415,22 @@ export default function Home() {
             </p>
           </div>
 
-          <div ref={appsRef} className="apps fade-in-up">
+          <div ref={appsRef} className="apps fade-in-up" id="ai-applications">
             <h3 className="h2">Applications of Our AI-Driven Solutions</h3>
             <div ref={appGridRef} className="app-grid fade-in-up-stagger">
-              <article className="card app-card">
-                <h4>AI Vision Systems</h4>
-                <ul>
-                  <li>Advanced defect detection and automated quality control.</li>
-                  <li>AI-driven neural networks to enhance line efficiency.</li>
-                  <li>High-speed image processing for real-time analysis.</li>
-                  <li>Integration with smart cameras for automation.</li>
-                </ul>
-                <a className="link" href="#">Learn More</a>
-              </article>
-              <article className="card app-card">
-                <h4>Autonomous Robotics</h4>
-                <ul>
-                  <li>Self-navigating AGVs for warehouse automation.</li>
-                  <li>High-precision robotic welding solutions.</li>
-                  <li>AI-powered drones for logistics and inspection.</li>
-                  <li>Robotic arms for handling and assembly.</li>
-                </ul>
-                <a className="link" href="#">Learn More</a>
-              </article>
-              <article className="card app-card">
-                <h4>Smart Infrastructure</h4>
-                <ul>
-                  <li>AI-driven traffic management and urban planning.</li>
-                  <li>Robotic waste sorting for greener cities.</li>
-                  <li>Intelligent solar farm management.</li>
-                  <li>AI-driven HVAC and smart grid solutions.</li>
-                </ul>
-                <a className="link" href="#">Learn More</a>
-              </article>
-              <article className="card app-card">
-                <h4>Healthcare 4.0</h4>
-                <ul>
-                  <li>Surgical robotics for precision care.</li>
-                  <li>AI-powered diagnostics for early detection.</li>
-                  <li>Automated drug dispensing systems.</li>
-                  <li>AI-based patient monitoring.</li>
-                </ul>
-                <a className="link" href="#">Learn More</a>
-              </article>
+              {APPLICATION_AREAS.map((app) => (
+                <article className="card app-card" key={app.id}>
+                  <h4>{app.title}</h4>
+                  <ul>
+                    {app.bullets.map((line, i) => (
+                      <li key={i}>{line}</li>
+                    ))}
+                  </ul>
+                  <Link className="link" to={`/applications/${app.id}`}>
+                    Learn More
+                  </Link>
+                </article>
+              ))}
             </div>
           </div>
 
@@ -267,7 +481,7 @@ export default function Home() {
           `}</style>
         </section>
 
-        <section className="container section-spacing">
+        <section className="container section-spacing" id="blog-articles">
           <SectionHeading
             overline="Latest"
             title="Latest Blog & Articles"

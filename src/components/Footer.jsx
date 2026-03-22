@@ -27,7 +27,7 @@ export default function Footer() {
         <nav className="col">
           <p className="col-title">Company</p>
           <a href="#">About</a>
-          <a href="#">News</a>
+          <a href="/#blog-articles">News</a>
           <a href="#">Contact</a>
           <a href="#">Support</a>
         </nav>

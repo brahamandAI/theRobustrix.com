@@ -9,14 +9,20 @@ export default function useInView(options = {}) {
       entries.forEach((e) => {
         if (e.isIntersecting) {
           node.classList.add('is-inview');
-        } else {
+          if (options.once !== false) {
+            obs.unobserve(node);
+          }
+        } else if (options.once === false) {
           node.classList.remove('is-inview');
         }
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: options.threshold ?? 0.1 });
+    }, {
+      rootMargin: options.rootMargin ?? '0px 0px 0px 0px',
+      threshold: options.threshold ?? 0,
+    });
     obs.observe(node);
     return () => obs.disconnect();
-  }, [options.threshold]);
+  }, [options.threshold, options.once, options.rootMargin]);
   return ref;
 }
 

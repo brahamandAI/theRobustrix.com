@@ -39,8 +39,8 @@ const SITES = [
 ];
 
 export default function SolutionShowcase() {
-  const headerRef = useInView({ threshold: 0.1 });
-  const gridRef = useInView({ threshold: 0.1 });
+  const headerRef = useInView();
+  const gridRef = useInView();
   
   function onImgError(e, id) {
     // Fallback to a placeholder or hide the image

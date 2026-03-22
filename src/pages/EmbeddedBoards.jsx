@@ -1,8 +1,8 @@
 import useInView from '../hooks/useInView.js';
 
 export default function EmbeddedBoards() {
-  const heroRef = useInView({ threshold: 0.1 });
-  const gridRef = useInView({ threshold: 0.1 });
+  const heroRef = useInView();
+  const gridRef = useInView();
   
   const tiles = [
     { id: 'sbc', title: 'Embedded Single Board Computers', img: '/products/embeddedboards.png' },
@@ -82,20 +82,20 @@ export default function EmbeddedBoards() {
         }
         .eb-card:hover { transform: translateY(-2px); background: #fff; box-shadow: var(--shadow-sm); }
         .eb-thumb {
-          display: grid;
-          place-items: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           width: 100%;
-          height: 120px;
           background: #fff;
           border-radius: 10px;
           box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 8px 20px rgba(18,28,45,0.06);
-          overflow: hidden;
+          padding: 10px;
+          box-sizing: border-box;
         }
         .eb-thumb img {
-          max-width: 160px;
-          max-height: 110px;
-          width: auto;
+          width: 100%;
           height: auto;
+          display: block;
           object-fit: contain;
         }
         .eb-title {

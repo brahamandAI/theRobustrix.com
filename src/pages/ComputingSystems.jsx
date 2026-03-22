@@ -23,8 +23,8 @@ const rawItems = [
 ];
 
 export default function ComputingSystems() {
-  const heroRef = useInView({ threshold: 0.1 });
-  const gridRef = useInView({ threshold: 0.1 });
+  const heroRef = useInView();
+  const gridRef = useInView();
   
   const items = useMemo(() => {
     return rawItems.map((it, idx) => ({
@@ -66,7 +66,6 @@ export default function ComputingSystems() {
                 <p className="ai-card-model">{it.modelView}</p>
               </div>
               <div className="ai-card-actions">
-                <a href="#" className="btn btn-primary">Details</a>
                 <a href="https://drive.google.com/file/d/1V2lWp_aqRs0okhO3mNIL0uzBgqL3GxUZ/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="btn btn-outline">Datasheet</a>
               </div>
             </article>
@@ -108,18 +107,20 @@ export default function ComputingSystems() {
         }
         .ai-thumb {
           width: 100%;
-          height: 160px;
-          display: grid;
-          place-items: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           background: #fff;
           border-radius: 10px;
           box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 8px 20px rgba(18,28,45,0.06);
-          overflow: hidden;
+          padding: 10px;
+          box-sizing: border-box;
         }
         .ai-thumb img {
           width: 100%;
-          height: 100%;
-          object-fit: cover;
+          height: auto;
+          display: block;
+          object-fit: contain;
         }
         .ai-card-title {
           font-size: 1.02rem;

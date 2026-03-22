@@ -13,7 +13,7 @@ const SOLUTIONS = [
 ];
 
 export default function Solutions() {
-  const ref = useInView({ threshold: 0.2 });
+  const ref = useInView();
   function onImgError(e, id) {
     const item = SOLUTIONS.find(x => x.id === id);
     if (item?.fallback) e.currentTarget.src = item.fallback;

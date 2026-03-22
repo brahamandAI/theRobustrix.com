@@ -1,46 +1,9 @@
+import { Link } from 'react-router-dom';
 import useInView from '../hooks/useInView.js';
-
-const NEWS = [
-  {
-    id: 'n1',
-    title: 'Unlocking Smart Connectivity: SIM-Enabled Industrial PCs by Robustrix',
-    date: 'May 8, 2025',
-    meta: '0 Comments · admin',
-    image: '/pictures/home1.png',
-    excerpt:
-      'In today’s fast-paced industrial world, smart connectivity isn’t just a luxury—it’s a necessity. With industries leaning heavily on real-time...',
-  },
-  {
-    id: 'n2',
-    title: 'Introduction to Fanless PCs: The Future of Industrial Computing',
-    date: 'June 12, 2024',
-    meta: '0 Comments · admin',
-    image: '/pictures/fanlesscpu.png',
-    excerpt:
-      'In today’s rapidly evolving industrial landscape, computing solutions must meet the increasing demands of durability, efficiency, and reliability...',
-  },
-  {
-    id: 'n3',
-    title: 'Exploring the Power of All-in-One PCs with Robustrix IT Solutions',
-    date: 'June 12, 2024',
-    meta: '0 Comments · admin',
-    image: '/pictures/aiplatforms.jpg',
-    excerpt:
-      'In today’s fast-paced digital world, businesses require solutions that are efficient, space‑saving, and powerful. All‑in‑One PCs...',
-  },
-  {
-    id: 'n4',
-    title: 'Why do we use Fanless PC Instead of Regular PC?',
-    date: 'June 12, 2024',
-    meta: '0 Comments · admin',
-    image: '/pictures/intelprocrssros.png',
-    excerpt:
-      'In industrial and mission‑critical environments, choosing the right computing solution is essential for reliability, durability, and performance...',
-  },
-];
+import { NEWS_CARD_ITEMS } from '../data/newsArticles.js';
 
 export default function News() {
-  const ref = useInView({ threshold: 0.2 });
+  const ref = useInView();
   function onImgError(e, id) {
     const map = {
       n1: '/pictures/home1.png',
@@ -52,8 +15,8 @@ export default function News() {
   }
   return (
     <div ref={ref} className="news fade-in-up">
-      {NEWS.map(n => (
-        <a href="#" className="card news-card" key={n.id}>
+      {NEWS_CARD_ITEMS.map((n) => (
+        <Link to={`/blog/${n.id}`} className="card news-card" key={n.id}>
           <img
             className="thumb"
             src={n.image}
@@ -69,7 +32,7 @@ export default function News() {
             {n.excerpt && <p className="excerpt">{n.excerpt}</p>}
             <span className="link">Read More...</span>
           </div>
-        </a>
+        </Link>
       ))}
 
       <style>{`

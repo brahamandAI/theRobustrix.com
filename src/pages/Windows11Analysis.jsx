@@ -3,15 +3,15 @@ import SectionHeading from '../components/SectionHeading.jsx';
 
 export default function Windows11Analysis() {
   // Animation refs
-  const heroRef = useInView({ threshold: 0.1 });
-  const whyRef = useInView({ threshold: 0.1 });
-  const featuresGridRef = useInView({ threshold: 0.1 });
-  const hardwareRef = useInView({ threshold: 0.1 });
-  const hardwareGridRef = useInView({ threshold: 0.1 });
-  const robustrixRef = useInView({ threshold: 0.1 });
-  const robustrixGridRef = useInView({ threshold: 0.1 });
-  const decisionRef = useInView({ threshold: 0.1 });
-  const ctaRef = useInView({ threshold: 0.1 });
+  const heroRef = useInView();
+  const whyRef = useInView();
+  const featuresGridRef = useInView();
+  const hardwareRef = useInView();
+  const hardwareGridRef = useInView();
+  const robustrixRef = useInView();
+  const robustrixGridRef = useInView();
+  const decisionRef = useInView();
+  const ctaRef = useInView();
 
   return (
     <main>

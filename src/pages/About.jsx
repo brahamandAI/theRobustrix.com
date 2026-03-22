@@ -6,18 +6,18 @@ export default function About() {
   const [submitted, setSubmitted] = useState(false);
   
   // Animation refs
-  const heroRef = useInView({ threshold: 0.1 });
-  const storyRef = useInView({ threshold: 0.1 });
-  const differentRef = useInView({ threshold: 0.1 });
-  const gridRef = useInView({ threshold: 0.1 });
-  const valuesRef = useInView({ threshold: 0.1 });
-  const impactRef = useInView({ threshold: 0.1 });
-  const impactGridRef = useInView({ threshold: 0.1 });
-  const bharatRef = useInView({ threshold: 0.1 });
-  const ctaRef = useInView({ threshold: 0.1 });
-  const contactFormRef = useInView({ threshold: 0.1 });
-  const findUsRef = useInView({ threshold: 0.1 });
-  const contactGridRef = useInView({ threshold: 0.1 });
+  const heroRef = useInView();
+  const storyRef = useInView();
+  const differentRef = useInView();
+  const gridRef = useInView();
+  const valuesRef = useInView();
+  const impactRef = useInView();
+  const impactGridRef = useInView();
+  const bharatRef = useInView();
+  const ctaRef = useInView();
+  const contactFormRef = useInView();
+  const findUsRef = useInView();
+  const contactGridRef = useInView();
   function onChange(e) {
     const { name, value } = e.target;
     setForm((f) => ({ ...f, [name]: value }));

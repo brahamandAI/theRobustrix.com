@@ -25,6 +25,8 @@ import PanelPC from './pages/panel/PanelPC.jsx';
 import Products from './pages/Products.jsx';
 import SolutionShowcase from './pages/SolutionShowcase.jsx';
 import Windows11Analysis from './pages/Windows11Analysis.jsx';
+import NewsArticle from './pages/NewsArticle.jsx';
+import ApplicationArea from './pages/ApplicationArea.jsx';
 
 function AppContent() {
   const { isOpen, closeModal } = useContact();
@@ -74,6 +76,8 @@ function AppContent() {
         <Route path="/products" element={<Products />} />
         <Route path="/solutions" element={<SolutionShowcase />} />
         <Route path="/windows-11-analysis" element={<Windows11Analysis />} />
+        <Route path="/blog/:id" element={<NewsArticle />} />
+        <Route path="/applications/:id" element={<ApplicationArea />} />
       </Routes>
       {showFooter && <Footer />}
       <ContactModal isOpen={isOpen} onClose={closeModal} />
