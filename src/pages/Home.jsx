@@ -45,6 +45,21 @@ export default function Home() {
     return () => clearTimeout(autoOpenTimer);
   }, [openModal]);
 
+  const homeMainImages = [
+    {
+      src: '/main/WhatsApp%20Image%202026-03-25%20at%2016.20.39.jpeg',
+      alt: 'Robustrix photo - WhatsApp Image 2026-03-25 at 16.20.39',
+    },
+    {
+      src: '/main/WhatsApp%20Image%202026-03-25%20at%2016.20.40%20%281%29.jpeg',
+      alt: 'Robustrix photo - WhatsApp Image 2026-03-25 at 16.20.40 (1)',
+    },
+    {
+      src: '/main/WhatsApp%20Image%202026-03-25%20at%2016.20.40.jpeg',
+      alt: 'Robustrix photo - WhatsApp Image 2026-03-25 at 16.20.40',
+    },
+  ];
+
   return (
     <>
       <main className="home-theme">
@@ -120,6 +135,46 @@ export default function Home() {
             @keyframes twBlink {
               0%, 45% { opacity: 0.95; }
               46%, 100% { opacity: 0; }
+            }
+          `}</style>
+        </section>
+
+        <section className="container section-spacing home-main-media" aria-label="Robustrix main gallery">
+          <div className="home-main-media-grid">
+            {homeMainImages.map((img) => (
+              <figure key={img.src} className="home-main-media-figure">
+                <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+              </figure>
+            ))}
+          </div>
+          <style>{`
+            .home-main-media-grid {
+              display: grid;
+              gap: clamp(12px, 2.4vw, 20px);
+              grid-template-columns: 1fr;
+            }
+            @media (min-width: 900px) {
+              .home-main-media-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+              }
+            }
+            .home-main-media-figure {
+              margin: 0;
+              border-radius: clamp(14px, 2vw, 22px);
+              overflow: hidden;
+              background: var(--home-section-dark, #031f27);
+              border: 1px solid rgba(2, 196, 249, 0.28);
+              box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+                0 18px 50px rgba(0, 0, 0, 0.35),
+                0 0 40px rgba(2, 196, 249, 0.10);
+            }
+            .home-main-media-figure > img {
+              width: 100%;
+              display: block;
+              height: auto;
+              object-fit: contain;
+              object-position: center;
             }
           `}</style>
         </section>
